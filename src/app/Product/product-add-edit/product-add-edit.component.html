@@ -1,0 +1,91 @@
+<div fxLayout="column" fxLayoutAlign="space-between">
+  <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+    <div class="right-panel-header-wrap" fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <div class="header">
+
+        <span class="header-text" *ngIf="!isupdate">
+          <h1>Create Product</h1>
+        </span>
+        <span class="header-text" *ngIf="isupdate">
+          <h1>Update Product</h1>
+        </span>
+
+
+      </div>
+      <div fxLayout="row wrap" class="form-action-buttons">
+        <button mat-icon-button (click)="closesideNav()" type="button">
+          <mat-icon>close</mat-icon>
+        </button>
+        <button mat-stroked-button color="primary" class="add-button btn-right"  type="submit" [disabled]="formControls.invalid">
+          <span>Save</span>
+      </button>
+      </div>
+    </div>
+    <div class="scrollbar-flex right-panel-content-wrap" fxlayoutalign="space-between center">
+
+      <div class="add-edit" fxLayout="column" fxlayoutalign="space-between center">
+      
+      <div fxFlex="100"> 
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Category</mat-label>
+          <mat-select required="true" formControlName="categoryId">
+              <mat-option *ngFor="let item of productCategory" [value]="item.prodCatId">
+                  {{item.categoryName}}
+              </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formControls.categoryId?.errors">
+              Category is required.
+          </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex="100" [disabled]="!isCategorySelected">
+        <mat-label>Attribute</mat-label>
+        <mat-select required="true" formControlName="attributeId">
+            <mat-option *ngFor="let item of productAttribute" [value]="item.attributeId">
+                {{item.attributeName}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formControls.attributeId?.errors">
+            Attribute is required.
+        </mat-error>
+    </mat-form-field>
+      </div>
+       
+        <div fxFlex="100">
+          <div fxLayout="row wrap" class="mt-12">
+            <div fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="50" fxFlex.xs="100" class="px-12">
+              <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Product Name</mat-label>
+                <input matInput name="Product Name" type="text" formControlName="productName" required="true">
+                <mat-error *ngIf="formControls.productName?.errors">
+                  Product Name is required.
+              </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="50" fxFlex.xs="100" class="px-12">
+              <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Attribute Value</mat-label>
+                <input matInput name="attributeName" type="text" formControlName="attributeName" required="true">
+                <mat-error *ngIf="formControls.attributeName?.errors">
+                  Attribute value is required.
+              </mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxFlex.xl="25" fxFlex.lg="25" fxFlex.md="25" fxFlex.sm="50" fxFlex.xs="100" class="px-12">
+              <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Product Description</mat-label>
+                <input matInput name="Product Name" type="text" formControlName="productDescription" required="true">
+                <mat-error *ngIf="formControls.productDescription?.errors">
+                  Product Description is required.
+              </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

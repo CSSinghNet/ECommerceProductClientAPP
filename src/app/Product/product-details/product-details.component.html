@@ -1,0 +1,37 @@
+<div class="row">
+  <button mat-stroked-button color="primary" class="add-button btn-right" (click)="addProduct('add')">
+    <span>Add Product</span>
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort>
+  <!-- Category Column -->
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Category </th>
+    <td mat-cell *matCellDef="let element"> {{element.prodCategoryName}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.prodName}} </td>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.prodDescription}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef > Details </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="redirectToDetails(element,element.productId)">
+        <mat-icon class="mat-18">reorder</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator #paginator showFirstLastButtons></mat-paginator>
