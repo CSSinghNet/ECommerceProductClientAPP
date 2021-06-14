@@ -38,7 +38,7 @@
           </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" fxFlex="100" [disabled]="!isCategorySelected">
+      <mat-form-field appearance="outline" fxFlex="100">
         <mat-label>Attribute</mat-label>
         <mat-select required="true" formControlName="attributeId">
             <mat-option *ngFor="let item of productAttribute" [value]="item.attributeId">
